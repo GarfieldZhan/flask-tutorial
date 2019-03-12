@@ -68,14 +68,22 @@ def forge():
     db.session.commit()
     click.echo("Done")
 
-
+#注册一个上下文处理器函数，使得user在模板上下文中可用
+@app.context_processor
+def inject_user():
+    user = User.query.first()
+    return dict(user=user)  #等同于返回{'user':user}
 
 @app.route('/')
 def index():
-    user = User.query.first()  #读取第一个用户
+   # user = User.query.first()  #读取第一个用户
     movies = Movie.query.all()  #读取所有的电影
-    return render_template('index.html',user=user,movies=movies)
+    return render_template('index.html',movies=movies)
 
+@app.errorhandler(404) #使用errorhandle注册一个错误处理函数
+def page_not_found(e):   #e为异常对象
+   # user = User.query.first()
+    return render_template('404.html'),404   #返回模板和错误码，普通视图默认为200，所以不用写
 
 if __name__ == '__main__':
     app.run()
