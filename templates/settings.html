@@ -2,7 +2,7 @@
 
 {% block content %}
     <h3>Settings</h3>
-    <form method="post">
+    <form method="POST">
         Your name<input type="text" name="name" autocomplete="off" required value="{{ current_user.name }}">
         <input type="submit" class="btn" value="Save" name="submit">
     </form>

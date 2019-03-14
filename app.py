@@ -137,7 +137,7 @@ def login():
         user = User.query.first()
         if  username == user.username and user.check_passwd(passwd):
             login_user(user)
-            flash("Login sucess.")
+            flash("Login success.")
             return redirect(url_for('index'))
         flash("Invalid  username or password")
         return redirect(url_for('login'))
@@ -208,7 +208,7 @@ def edit(movie_id):
         movie.title = title
         movie.year = year
         db.session.commit()
-        flash("Item created")
+        flash("Item updated")
         return redirect(url_for("index"))
     return render_template('edit.html',movie=movie)
 
