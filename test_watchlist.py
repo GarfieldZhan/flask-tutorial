@@ -1,6 +1,7 @@
 import unittest
-from app import app, db, Movie, User
-from app import initdb, forge
+from watchlist import app, db
+from watchlist.models import User, Movie
+from watchlist.commands import forge, initdb
 
 class WatchlistTestCase(unittest.TestCase):
     #在测试之前设定
